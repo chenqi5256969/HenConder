@@ -12,6 +12,9 @@ import android.view.View
 import com.revenco.myapplication.dp2px
 
 
+/**
+ * 多手指绘制
+ */
 class MultiTouchView2 @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
