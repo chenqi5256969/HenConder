@@ -69,7 +69,6 @@ class MultiTouchView2 @JvmOverloads constructor(
                 invalidate()
             }
         }
-
         return true
     }
 }
