@@ -28,6 +28,15 @@ val Float.dp2px: Float
         )
     }
 
+val Int.dp2px: Float
+    get() {
+        return TypedValue.applyDimension(
+            COMPLEX_UNIT_DIP,
+            this.toFloat(),
+            Resources.getSystem().displayMetrics
+        )
+    }
+
 fun log(msg:String)
 {
     Log.i("ScaleableImageView--->",msg)
