@@ -18,32 +18,48 @@ class MeasureTextView constructor(
 ) : View(context, attributeSet, def) {
 
     private val radius = 100.dp2px
-    private val textRect=Rect()
+    private val textRect = Rect()
+    private val fontMetrics = Paint.FontMetrics()
     val paint = Paint(Paint.ANTI_ALIAS_FLAG).also {
 
         it.strokeWidth = 20.dp2px
         it.style = Paint.Style.STROKE
 
-        it.textSize=30.dp2px
-        it.textAlign=Paint.Align.CENTER
+        it.textSize = 30.dp2px
+        it.textAlign = Paint.Align.CENTER
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
     }
+
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
-        paint.style=Paint.Style.STROKE
+        paint.style = Paint.Style.STROKE
         paint.color = Color.parseColor("#6E6E6E")
         canvas.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), radius, paint)
         paint.color = Color.parseColor("#B40431")
         val rectF =
             RectF(width / 2 - radius, height / 2 - radius, radius + width / 2, radius + height / 2)
         canvas.drawArc(rectF, -90f, 220f, false, paint)
-        paint.style=Paint.Style.FILL
-        paint.getTextBounds("abab",0,"abab".length,textRect)
-        canvas.drawText("abab",width/2f,height/2f,paint)
+        paint.style = Paint.Style.FILL
+        //静态文字的绘制,依据文字的上下边界来计算
+        /*paint.getTextBounds("abab", 0, "abab".length, textRect)
+        canvas.drawText(
+            "abab",
+            width / 2f,
+            height / 2f - (textRect.bottom + textRect.top) / 2,
+            paint
+        )*/
+        //动态文字绘制,实时测量文字的上下边界
+        paint.getFontMetrics(fontMetrics)
+        canvas.drawText(
+            "abab",
+            width / 2f,
+            height / 2f - (fontMetrics.ascent + fontMetrics.descent) / 2,
+            paint
+        )
     }
 
 }
