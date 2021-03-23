@@ -2,10 +2,7 @@ package com.revenco.myapplication.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
@@ -21,6 +18,7 @@ class MeasureTextView constructor(
 ) : View(context, attributeSet, def) {
 
     private val radius = 100.dp2px
+    private val textRect=Rect()
     val paint = Paint(Paint.ANTI_ALIAS_FLAG).also {
 
         it.strokeWidth = 20.dp2px
@@ -44,6 +42,7 @@ class MeasureTextView constructor(
             RectF(width / 2 - radius, height / 2 - radius, radius + width / 2, radius + height / 2)
         canvas.drawArc(rectF, -90f, 220f, false, paint)
         paint.style=Paint.Style.FILL
+        paint.getTextBounds("abab",0,"abab".length,textRect)
         canvas.drawText("abab",width/2f,height/2f,paint)
     }
 
