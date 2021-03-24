@@ -36,6 +36,8 @@ class MeasureTextView constructor(
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
+        paint.textAlign = Paint.Align.CENTER
+        paint.textSize = 30.dp2px
         paint.style = Paint.Style.STROKE
         paint.color = Color.parseColor("#6E6E6E")
         canvas.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), radius, paint)
@@ -60,6 +62,15 @@ class MeasureTextView constructor(
             height / 2f - (fontMetrics.ascent + fontMetrics.descent) / 2,
             paint
         )
+
+
+        //文字的贴边
+        paint.textAlign=Paint.Align.LEFT
+        paint.textSize=120.dp2px
+        paint.getTextBounds("abab", 0, "abab".length, textRect)
+        canvas.drawText("abab",0f-textRect.left,0f-textRect.top,paint)
+
+
     }
 
 }
