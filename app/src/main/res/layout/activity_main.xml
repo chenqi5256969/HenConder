@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    <com.revenco.myapplication.view.MultiLineTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <data>
+</androidx.appcompat.widget.LinearLayoutCompat>
 
-    </data>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
-
-        <Button
-            android:id="@+id/oneBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-         />
-
-        <Button
-            android:id="@+id/twoBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</layout>

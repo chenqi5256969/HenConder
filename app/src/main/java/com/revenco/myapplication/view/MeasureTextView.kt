@@ -47,14 +47,21 @@ class MeasureTextView constructor(
         canvas.drawArc(rectF, -90f, 220f, false, paint)
         paint.style = Paint.Style.FILL
         //静态文字的绘制,依据文字的上下边界来计算
-        /*paint.getTextBounds("abab", 0, "abab".length, textRect)
-        canvas.drawText(
-            "abab",
-            width / 2f,
-            height / 2f - (textRect.bottom + textRect.top) / 2,
-            paint
-        )*/
+       // staticDrawText(canvas)
         //动态文字绘制,实时测量文字的上下边界
+        dynamicDrawText(canvas)
+        //文字的贴边
+        facedText(canvas)
+    }
+
+    private fun facedText(canvas: Canvas) {
+        paint.textAlign = Paint.Align.LEFT
+        paint.textSize = 120.dp2px
+        paint.getTextBounds("abab", 0, "abab".length, textRect)
+        canvas.drawText("abab", 0f - textRect.left, 0f - textRect.top, paint)
+    }
+
+    private fun dynamicDrawText(canvas: Canvas) {
         paint.getFontMetrics(fontMetrics)
         canvas.drawText(
             "abab",
@@ -62,15 +69,17 @@ class MeasureTextView constructor(
             height / 2f - (fontMetrics.ascent + fontMetrics.descent) / 2,
             paint
         )
+    }
 
-
-        //文字的贴边
-        paint.textAlign=Paint.Align.LEFT
-        paint.textSize=120.dp2px
+    private fun staticDrawText(canvas: Canvas) {
+        //获取文字的边界
         paint.getTextBounds("abab", 0, "abab".length, textRect)
-        canvas.drawText("abab",0f-textRect.left,0f-textRect.top,paint)
-
-
+        canvas.drawText(
+            "abab",
+            width / 2f,
+            height / 2f - (textRect.bottom + textRect.top) / 2,
+            paint
+        )
     }
 
 }
