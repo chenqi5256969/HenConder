@@ -46,20 +46,16 @@ class MultiLineTextView @JvmOverloads constructor(
         //一般的绘制多行文字
         // drawText1(canvas)
         paint.getFontMetrics(fontMetrics)
-        //绘制第一行
-        var count = paint.breakText(text, true, width.toFloat(), measuredWidth)
-        canvas.drawText(text, 0, count, 0f, -fontMetrics.top, paint)
-        val oldCount = count
-        count =
-            paint.breakText(text, count, text.length, true, width.toFloat(), measuredWidth)
-        canvas.drawText(
-            text,
-            oldCount,
-            oldCount + count,
-            0f,
-            -fontMetrics.top + paint.fontSpacing,
-            paint
-        )
+        //开始绘制文字
+        var start = 0
+        var textY = -fontMetrics.top
+        while (start < text.length) {
+            val count =
+                paint.breakText(text, start, text.length, true, width.toFloat(), measuredWidth)
+            canvas.drawText(text, start, start + count, 0f, textY, paint)
+            start += count
+            textY += paint.fontSpacing
+        }
 
 
     }
