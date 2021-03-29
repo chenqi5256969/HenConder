@@ -9,6 +9,8 @@ import android.text.StaticLayout
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
+import com.revenco.myapplication.R
+import com.revenco.myapplication.compressImage
 import com.revenco.myapplication.dp2px
 
 /**
@@ -36,8 +38,11 @@ class MultiLineTextView @JvmOverloads constructor(
 
     private val measuredWidth = floatArrayOf()
 
+    val bitmap = compressImage(R.mipmap.icon_android, resources, 100f.dp2px)
+
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
+        //canvas.drawBitmap(bitmap, width - 100f.dp2px, 50f, paint)
         //一般的绘制多行文字
         // drawText1(canvas)
         paint.getFontMetrics(fontMetrics)
@@ -55,6 +60,7 @@ class MultiLineTextView @JvmOverloads constructor(
             -fontMetrics.top + paint.fontSpacing,
             paint
         )
+
 
     }
 
