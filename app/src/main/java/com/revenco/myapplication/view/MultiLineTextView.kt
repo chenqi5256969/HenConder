@@ -34,24 +34,35 @@ class MultiLineTextView @JvmOverloads constructor(
         it.textSize = 12.dp2px
     }
 
+    private val imageSize = 100f.dp2px
+
+    private val imageOffsetY = 50f.dp2px
+
     private val fontMetrics = Paint.FontMetrics()
 
     private val measuredWidth = floatArrayOf()
 
-    val bitmap = compressImage(R.mipmap.icon_android, resources, 100f.dp2px)
+    private val bitmap = compressImage(R.mipmap.icon_android, resources, imageSize)
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
-        //canvas.drawBitmap(bitmap, width - 100f.dp2px, 50f, paint)
+        canvas.drawBitmap(bitmap, width - imageSize, imageOffsetY, paint)
+        paint.getFontMetrics(fontMetrics)
         //一般的绘制多行文字
         // drawText1(canvas)
-        paint.getFontMetrics(fontMetrics)
         //开始绘制文字
         var start = 0
         var textY = -fontMetrics.top
+        var maxWidth = 0f
         while (start < text.length) {
+            maxWidth =
+                if (textY + fontMetrics.bottom < imageOffsetY || textY + fontMetrics.top > (imageOffsetY + bitmap.height)) {
+                    width.toFloat()
+                } else {
+                    width - imageSize
+                }
             val count =
-                paint.breakText(text, start, text.length, true, width.toFloat(), measuredWidth)
+                paint.breakText(text, start, text.length, true, maxWidth, measuredWidth)
             canvas.drawText(text, start, start + count, 0f, textY, paint)
             start += count
             textY += paint.fontSpacing
