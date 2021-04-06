@@ -1,9 +1,8 @@
-package com.revenco.myapplication.view
+package com.revenco.myapplication.text
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
-import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 import com.revenco.myapplication.dp2px

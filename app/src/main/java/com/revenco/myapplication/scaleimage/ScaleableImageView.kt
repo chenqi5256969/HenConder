@@ -1,18 +1,15 @@
-package com.revenco.myapplication.view
+package com.revenco.myapplication.scaleimage
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.PathMeasure
-import android.os.Build
 import android.util.AttributeSet
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.view.GestureDetectorCompat
 import com.revenco.myapplication.R
 import com.revenco.myapplication.compressImage

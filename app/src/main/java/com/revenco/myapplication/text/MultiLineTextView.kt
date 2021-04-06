@@ -1,4 +1,4 @@
-package com.revenco.myapplication.view
+package com.revenco.myapplication.text
 
 import android.annotation.SuppressLint
 import android.content.Context
