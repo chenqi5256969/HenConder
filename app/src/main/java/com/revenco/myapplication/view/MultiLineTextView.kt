@@ -61,8 +61,7 @@ class MultiLineTextView @JvmOverloads constructor(
                 } else {
                     width - imageSize
                 }
-            val count =
-                paint.breakText(text, start, text.length, true, maxWidth, measuredWidth)
+            val count = paint.breakText(text, start, text.length, true, maxWidth, measuredWidth)
             canvas.drawText(text, start, start + count, 0f, textY, paint)
             start += count
             textY += paint.fontSpacing
