@@ -1,9 +1,9 @@
 package com.revenco.myapplication.clip
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
+import android.graphics.*
+import android.graphics.PorterDuff.Mode.*
 import android.util.AttributeSet
 import android.view.View
 import com.revenco.myapplication.R
@@ -22,7 +22,17 @@ class ClipCanvasView @JvmOverloads constructor(
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    val bitmap = compressImage(R.mipmap.icon_android, resources, image_size)
+    val bitmap = compressImage(R.mipmap.icon_desktop, resources, image_size)
+
+    private val demersalImageBitmap = Bitmap.createBitmap(
+        (image_size).toInt(), (image_size).toInt(),
+        Bitmap.Config.ARGB_8888
+    )
+
+    private val demersalCircleBitmap = Bitmap.createBitmap(
+        ((image_size)).toInt(), ((image_size)).toInt(),
+        Bitmap.Config.ARGB_8888
+    )
 
     val clipPath = Path().also {
         it.addCircle(
@@ -33,14 +43,29 @@ class ClipCanvasView @JvmOverloads constructor(
         )
     }
 
+    init {
+        val canvas = Canvas(demersalImageBitmap)
+        canvas.drawBitmap(bitmap,0f,0f,paint)
+        canvas.setBitmap(demersalCircleBitmap)
+        canvas.drawCircle(
+            image_size / 2,
+            image_size / 2,
+            image_size / 2, paint
+        )
+    }
+
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         //方位裁切
         //   clipRange(canvas)
         //路径裁切
-        //clipPath(canvas)
+        // clipPath(canvas)
         //利用xfmode裁切
-
-        canvas.drawBitmap(bitmap, image_padding, image_padding, paint)
+       //  canvas.drawBitmap(bitmap, image_padding, image_padding, paint)
+        canvas.drawBitmap(demersalCircleBitmap, image_padding, image_padding, paint)
+        paint.xfermode = PorterDuffXfermode(DST_OUT)
+        canvas.drawBitmap(demersalImageBitmap, image_padding, image_padding, paint)
+         paint.xfermode= null
     }
 
     private fun clipPath(canvas: Canvas) {
