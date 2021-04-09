@@ -10,6 +10,9 @@ import com.revenco.myapplication.R
 import com.revenco.myapplication.compressImage
 import com.revenco.myapplication.dp2px
 
+/**
+ * canvas的裁剪clip
+ */
 class ClipCanvasView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -65,7 +68,7 @@ class ClipCanvasView @JvmOverloads constructor(
         canvas.drawBitmap(demersalCircleBitmap, image_padding, image_padding, paint)
         paint.xfermode = PorterDuffXfermode(DST_OUT)
         canvas.drawBitmap(demersalImageBitmap, image_padding, image_padding, paint)
-         paint.xfermode= null
+        paint.xfermode= null
     }
 
     private fun clipPath(canvas: Canvas) {
