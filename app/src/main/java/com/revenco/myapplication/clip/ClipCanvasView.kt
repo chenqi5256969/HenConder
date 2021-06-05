@@ -62,13 +62,13 @@ class ClipCanvasView @JvmOverloads constructor(
         //方位裁切
         //   clipRange(canvas)
         //路径裁切
-        // clipPath(canvas)
+         clipPath(canvas)
         //利用xfmode裁切
-       //  canvas.drawBitmap(bitmap, image_padding, image_padding, paint)
-        canvas.drawBitmap(demersalCircleBitmap, image_padding, image_padding, paint)
-        paint.xfermode = PorterDuffXfermode(DST_OUT)
-        canvas.drawBitmap(demersalImageBitmap, image_padding, image_padding, paint)
-        paint.xfermode= null
+         canvas.drawBitmap(bitmap, image_padding, image_padding, paint)
+      //  canvas.drawBitmap(demersalCircleBitmap, image_padding, image_padding, paint)
+      //  paint.xfermode = PorterDuffXfermode(DST_OUT)
+      //  canvas.drawBitmap(demersalImageBitmap, image_padding, image_padding, paint)
+       // paint.xfermode= null
     }
 
     private fun clipPath(canvas: Canvas) {
