@@ -64,7 +64,7 @@ class MeasureTextView constructor(
         paint.getFontMetrics(fontMetrics)
         canvas.drawText(
             "abab",
-            width / 2f,
+            (width/2).toFloat(),
             height / 2f - (fontMetrics.ascent + fontMetrics.descent) / 2,
             paint
         )

@@ -7,9 +7,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.revenco.myapplication.clip.ClipCanvasView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <com.revenco.myapplication.bitmapanddrawable.DrawableView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 
